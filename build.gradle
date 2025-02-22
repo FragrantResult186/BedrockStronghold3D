@@ -1,0 +1,34 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://jitpack.io"
+    }
+    maven {
+        url "https://repo.jellejurre.dev"
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+
+    implementation 'com.github.mjtb49:SeedUtils:512bf3878057493457d534071277d58426a67b5a'
+    implementation ('com.github.KaptainWutax:BiomeUtils:69d9a7644e5477344379e451cdbdd036596ca88c') { transitive = false }
+    implementation 'com.github.KalleStruik:noise-sampler:1.20.0'
+
+    implementation 'org.jogamp.gluegen:gluegen-rt-main:2.3.2'
+    implementation 'org.jogamp.jogl:jogl-all-main:2.3.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'minecraft.stronghold.viewer.StrongholdViewer'
+}
