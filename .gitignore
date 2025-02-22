@@ -1,10 +1,8 @@
-# Gradle関連
 .gradle/
 build/
 out/
 !gradle/wrapper/gradle-wrapper.jar
 
-# IDE関連
 *.iml
 .idea/
 .vscode/

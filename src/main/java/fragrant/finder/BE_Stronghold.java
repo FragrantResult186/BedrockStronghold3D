@@ -78,23 +78,4 @@ public class BE_Stronghold {
 
         return false;
     }
-
-    public static boolean checkVillageBiomes(long worldSeed, BiomeSampler biomeSampler) {
-        Position.BlockPos[] strongholds = getFirstThreeStrongholds(worldSeed, biomeSampler);
-
-        Set<Biome> validBiomes = Set.of(
-                Biome.PLAINS, Biome.SUNFLOWER_PLAINS, Biome.SNOWY_PLAINS,
-                Biome.DESERT, Biome.TAIGA, Biome.SNOWY_TAIGA,
-                Biome.SAVANNA, Biome.MEADOW
-        );
-
-        for (Position.BlockPos pos : strongholds) {
-            Biome biome = biomeSampler.getBiomeFromBlockPos(pos.x(), 64, pos.z());
-
-            if (!validBiomes.contains(biome)) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

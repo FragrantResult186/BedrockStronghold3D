@@ -46,15 +46,9 @@ public class SearchPanel extends JPanel {
             SwingWorker<Position.BlockPos[], Void> worker = new SwingWorker<>() {
                 @Override
                 protected Position.BlockPos[] doInBackground() {
-                    for (long i = 0; i < (1L << 32); i++) {
-                        long worldSeed = (i << 32) | structureSeed;
-                        BiomeSampler biomeSampler = new BiomeSampler(worldSeed);
-                        Position.BlockPos[] positions = findValidStrongholds(worldSeed, biomeSampler);
-                        if (positions != null) {
-                            return positions;
-                        }
-                    }
-                    return null;
+                    long worldSeed = (0) | structureSeed;
+                    BiomeSampler biomeSampler = new BiomeSampler(worldSeed);
+                    return findValidStrongholds(worldSeed, biomeSampler);
                 }
 
                 @Override
@@ -82,13 +76,7 @@ public class SearchPanel extends JPanel {
     }
 
     private Position.BlockPos[] findValidStrongholds(long worldSeed, BiomeSampler biomeSampler) {
-        Position.BlockPos[] strongholds = BE_Stronghold.getFirstThreeStrongholds(worldSeed, biomeSampler);
-
-        if (!BE_Stronghold.checkVillageBiomes(worldSeed, biomeSampler)) {
-            return null;
-        }
-
-        return strongholds;
+        return BE_Stronghold.getFirstThreeStrongholds(worldSeed, biomeSampler);
     }
 
     private void displayResult(Position.BlockPos[] positions, long structureSeed) {
